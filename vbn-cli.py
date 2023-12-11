@@ -1,24 +1,20 @@
 import argparse
 import base64
+from babel.dates import format_datetime
 from bs4 import BeautifulSoup
 import configparser
+import datetime
 import hashlib
 import hmac
 import json
-import locale
 import requests
 import secrets
 import sys
-import time
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
 config_filename = 'vbn.cfg'
 ticket_filename = 'tickets.json'
-
-# date format
-locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
-dateformat = '%a, %d %b %Y %H:%M:%S GMT'
 
 # API Secret
 secret = b'dohCeewoghAX1Wah2Us8'
@@ -37,7 +33,8 @@ def request(url_string, content, add_headers={}):
     content_signature = get_signature(content_string, secret)
 
     url = urlparse(url_string)
-    datetime_str = time.strftime(dateformat, time.gmtime())
+    current_time = datetime.datetime.utcnow()
+    datetime_str = format_datetime(current_time, format='EEE, dd MMM yyyy HH:mm:ss', locale='en')+' GMT'
 
     headers = {
         'Accept-Language': 'en',
