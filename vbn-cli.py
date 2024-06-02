@@ -33,7 +33,7 @@ def request(url_string, content, add_headers={}):
     content_signature = get_signature(content_string, secret)
 
     url = urlparse(url_string)
-    current_time = datetime.datetime.utcnow()
+    current_time = datetime.datetime.now(datetime.UTC)
     datetime_str = format_datetime(current_time, format='EEE, dd MMM yyyy HH:mm:ss', locale='en')+' GMT'
 
     headers = {
