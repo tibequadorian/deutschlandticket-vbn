@@ -1,6 +1,6 @@
 **Public Infrastructure, Public Code**
 
-This program can download your mobile tickets from VBN without the need for a proprietary app.
+This program can download your mobile tickets from VBN without the need for a [proprietary app](https://www.vbn.de/service/fahrplaner-app/).
 
 # Installation
 
